@@ -103,6 +103,14 @@ describe Feeder::Concerns::Feedable do
       end
     end
 
+    context 'when the feedable has chains' do
+      it 'has chains' do
+        expect(Feeder::Item.last.chains).to eq(message.chains_list.map { |c| c.to_s })
+
+      end
+    end
+
+
     context 'when the feedable is configured to not feed' do
       context 'with a lambda' do
         around do |example|
@@ -127,6 +135,7 @@ describe Feeder::Concerns::Feedable do
           expect(Feeder::Item.count).to eq 0
         end
       end
+
     end
   end
 end

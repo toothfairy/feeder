@@ -58,6 +58,10 @@ module Feeder::Concerns::Feedable
       if respond_to? :sticky
         item.sticky = sticky
       end
+
+      if respond_to? :chains_list
+        item.chains = chains_list.map { |c| c.to_s }
+      end
     end
   end
 

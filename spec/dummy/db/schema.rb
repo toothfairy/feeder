@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140815105053) do
+ActiveRecord::Schema.define(version: 20140925072218) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "articles", force: true do |t|
     t.string   "header"
@@ -30,9 +33,10 @@ ActiveRecord::Schema.define(version: 20140815105053) do
     t.boolean  "blocked",       default: false, null: false
     t.boolean  "reported",      default: false, null: false
     t.boolean  "recommended",   default: false, null: false
+    t.string   "chains",        default: [],                 array: true
   end
 
-  add_index "feeder_items", ["feedable_id", "feedable_type"], name: "index_feeder_items_on_feedable_id_and_feedable_type"
+  add_index "feeder_items", ["feedable_id", "feedable_type"], name: "index_feeder_items_on_feedable_id_and_feedable_type", using: :btree
 
   create_table "messages", force: true do |t|
     t.string   "header"
