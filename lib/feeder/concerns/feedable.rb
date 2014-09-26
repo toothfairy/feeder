@@ -69,5 +69,9 @@ module Feeder::Concerns::Feedable
     if feeder_item && respond_to?(:sticky)
       feeder_item.update!(sticky: sticky)
     end
+
+    if feeder_item && respond_to?(:chains_list)
+      feeder_item.update!(chains: chains_list.map { |c| c.to_s })
+    end
   end
 end

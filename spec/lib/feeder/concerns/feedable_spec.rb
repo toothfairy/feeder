@@ -106,7 +106,6 @@ describe Feeder::Concerns::Feedable do
     context 'when the feedable has chains' do
       it 'has chains' do
         expect(Feeder::Item.last.chains).to eq(message.chains_list.map { |c| c.to_s })
-
       end
     end
 
